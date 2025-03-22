@@ -63,13 +63,6 @@ A highly efficient deep learning solution for automated face mask detection in p
 # Clone the repository
 git clone https://github.com/siddharth-bathrachalam/face-mask-detection.git
 cd face-mask-detection
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
 ```
 
 ## 🚂 Usage
@@ -83,14 +76,11 @@ from ultralytics import YOLO
 # Load the model
 model = YOLO('weights/best.pt')
 
-# Perform detection and show results
-model.show()
-
 # For inference on an image
-results = model('path/to/image.jpg')
+results = model('path/to/image.jpg')[0]
 
-# For real-time webcam detection
-results = model(0, show=True)  # 0 for webcam
+# For real-time detection
+results.show()
 ```
 
 ### Model Training
@@ -102,7 +92,7 @@ We use a Jupyter Notebook for training as provided by RNDsoft:
 # Navigate to the RND training notebook and run the cells
 
 # Example training command in the notebook
-model = YOLO('yolov11n.yaml')
+model = YOLO('yolo11n.pt')
 results = model.train(data='mask_dataset.yaml', epochs=200, imgsz=640)
 ```
 
